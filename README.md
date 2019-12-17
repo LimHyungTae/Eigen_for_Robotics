@@ -6,9 +6,7 @@
 
 Original Author: 임형태 (shapelim@kaist.ac.kr)
 
-원래 [연구실](http://urobot.kaist.ac.kr/) 내에서 공유하는 URL Navigation Library(unavlib)의 일부를 
-
-ROS tf 공부할 겸 다시 정리했습니다. :smirk:
+원래 [연구실](http://urobot.kaist.ac.kr/) 내에서 공유하는 URL Navigation Library(unavlib)의 일부를 ROS tf 공부할 겸 다시 정리했습니다. :smirk:
 
 Special thanks to 김형진(hjkim86@kaist.ac.kr) and 송승원(sswan55@kaist.ac.kr)
 
@@ -27,7 +25,7 @@ ver 1.0. geometry_msgs/Pose <-> Eigen::Matrix4f <-> xyzrpy(by Eigen::VectorXf) �
 
 ### 사용해야하는 이유
 
-ROS 상에서 로봇의 pose들은 [nav_msgs/Odometry](http://docs.ros.org/melodic/api/nav_msgs/html/msg/Odometry.html)나 [geometry_msgs/PoseStamped](http://docs.ros.org/melodic/api/geometry_msgs/html/msg/PoseStamped.html)로 데이터를 제공하는데, 이 메세지를 C++ 상에서 활용하려면 Eigen의(python으로 치면 numpy 같은?) Matrix로 변환해서 사용하는 것이 편하다. 4x4 변환행렬(transformation matrix)로 pose를 포현하게 되면 상대적인 pose나 pose의 좌표계의 변환이 굉장히 용이해진다!
+ROS 상에서 로봇의 pose 값은 [nav_msgs/Odometry](http://docs.ros.org/melodic/api/nav_msgs/html/msg/Odometry.html)나 [geometry_msgs/PoseStamped](http://docs.ros.org/melodic/api/geometry_msgs/html/msg/PoseStamped.html) 타입으로 데이터를 제공하는데, 이 메세지를 C++ 상에서 활용할 때 Eigen의 Matrix로 변환해서 사용하면 편하다. 왜냐하면 4x4 변환행렬(transformation matrix)로 pose를 표현하게 되면 상대적인 pose를 구할 때나(e.g. t-1의 pose와 t의 pose를 pre_pose, curr_pose라는 이름의 Matrix4f로 변환했을 때, prev_pose.inverse() * curr_pose를 하면 t-1 pose의 관점에서 t의 pose를 바라봤을 때의 상대적인 포즈를 손쉽게 구할 수 있음 ) pose의 좌표계의 변환이 굉장히 용이해지기 때문.
 
 ### 사용법 
 
@@ -44,9 +42,6 @@ Or if you use catkin-tools, then type below line on the command
 
 3. Rosrun example file
 <pre><code>$ rosrun pose_conversion pose_type_conversion </code></pre>
-
-
-
 
 Prerequisites
 -----
