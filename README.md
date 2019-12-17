@@ -53,7 +53,7 @@ Prerequisites
 ## 테스트 및 검증
 
 [Online 3D Rotation Converter](https://www.andre-gaschler.com/rotationconverter/)를 통해 여러 값들을 대입하여 라이브러리가 잘 작동하는 지 확인해보았다.
-#### Eigen
+#### Test case 1. geometry_msgs/Pose -> 4x4 transformation matrix / xyzrpy
 ![eigen2sth](./imgs/eigen2sth.png)
 
 ```cpp
@@ -68,6 +68,7 @@ Prerequisites
 -0.0192999
    1.78972
 ```
+#### Test case 2. 4x4 transformation matrix -> geometry_msgs/Pose / xyzrpy
 ![geoPose2sth](./imgs/geoPose2sth.png)
 ```cpp
 3.5, 4.2, 1
@@ -79,6 +80,7 @@ Prerequisites
   0.191647
   -2.25311
 ```
+#### Test case 3. xyzrpy -> geometry_msgs/Pose 4x4 transformation matrix 
 ![xyzrpy2sth](./imgs/xyzrpy2sth.png)
 ```cpp
 After: 
@@ -92,18 +94,8 @@ After:
 
 ### 다른 패키지에서 사용하는 법
 
+1. <code>$ pose_converion.h</code>과 <code>$ pose_converion.cpp</code>를 해당 패키지로 옮긴다.
+
 ![how_to_use](./imgs/how_to_use.png)
 
-1. Download this repository 
-<pre><code>$ cd /home/$usr_name/catkin_ws/src</code></pre>
-<pre><code>$ git clone https://github.com/LimHyungTae/pose_conversion.git</code></pre>
-
-2. Build this ros code as follows.
-<pre><code>$ cd /home/$usr_name/catkin_ws</code></pre>
-<pre><code>$ catkin_make pose_conversion</code></pre>
-
-Or if you use catkin-tools, then type below line on the command
-<pre><code>$ catkin build pose_conversion</code></pre>
-
-3. Rosrun example file
-<pre><code>$ rosrun pose_conversion pose_type_conversion </code></pre>
+2. 위와 같이 set 해주고 해당 node에 추가해준다.
