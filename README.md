@@ -12,11 +12,11 @@ ROS tf 공부할 겸 다시 정리했습니다. :smirk:
 
 Special thanks to 김형진(hjkim86@kaist.ac.kr) and 송승원(sswan55@kaist.ac.kr)
 
-=======================
+---
 
 ver 1.0. geometry_msgs/Pose <-> Eigen::Matrix4f <-> xyzrpy(by Eigen::VectorXf) 변환
 
-=========================
+---
 
 ### Dependency libraries
 
@@ -24,8 +24,10 @@ ver 1.0. geometry_msgs/Pose <-> Eigen::Matrix4f <-> xyzrpy(by Eigen::VectorXf) �
 * pcl (default version of ROS)
 * tf (default version of ROS)
 ---
+
 ### 사용해야하는 이유
 
+ROS 상에서 로봇의 pose들은 [nav_msgs/Odometry](http://docs.ros.org/melodic/api/nav_msgs/html/msg/Odometry.html)나 [geometry_msgs/PoseStamped](http://docs.ros.org/melodic/api/geometry_msgs/html/msg/PoseStamped.html)로 데이터를 제공하는데, 이 메세지를 C++ 상에서 활용하려면 Eigen의(python으로 치면 numpy 같은?) Matrix로 변환해서 사용하는 것이 편하다. 4x4 변환행렬(transformation matrix)로 pose를 포현하게 되면 상대적인 pose나 pose의 좌표계의 변환이 굉장히 용이해진다!
 
 ### 사용법 
 
@@ -39,16 +41,18 @@ ver 1.0. geometry_msgs/Pose <-> Eigen::Matrix4f <-> xyzrpy(by Eigen::VectorXf) �
 Or if you use catkin-tools, then type below line on the command
 <pre><code>$ catkin build re510_slam</code></pre>
 
+3. Rosrun example file
+<pre><code>$ rosrun pose_conversion pose_type_conversion</code></pre>
 ### 다른 패키지에서 사용하는 법
 
-
+![how_to_use](./imgs/how_to_use.png)
 
 
 Prerequisites
 -----
 ## 테스트 및 검증
 
-![eigen2sth](./img/eigen2sth.gif)
+![eigen2sth](./imgs/eigen2sth.png)
 
 ```cpp
 -0.217141 -0.960464  0.174239       7.9
@@ -62,7 +66,7 @@ Prerequisites
 -0.0192999
    1.78972
 ```
-
+![geoPose2sth](./imgs/geoPose2sth.png)
 ```cpp
 3.5, 4.2, 1
 -0.0717496, -0.0717496, 0.89687, -0.430498
@@ -73,7 +77,7 @@ Prerequisites
   0.191647
   -2.25311
 ```
-
+![xyzrpy2sth](./imgs/xyzrpy2sth.png)
 ```cpp
 After: 
   0.265133  -0.695141  -0.668194       -4.2
