@@ -2,7 +2,7 @@
 
 ### ROS로 개발할시 type 변환을 용이하게 해주는 라이브러리
 
-
+![trinity](./imgs/pose_conversion.png)
 
 Original Author: 임형태 (shapelim@kaist.ac.kr)
 
@@ -53,7 +53,7 @@ Prerequisites
 ## 테스트 및 검증
 
 [Online 3D Rotation Converter](https://www.andre-gaschler.com/rotationconverter/)를 통해 여러 값들을 대입하여 라이브러리가 잘 작동하는 지 확인해보았다.
-
+#### Eigen
 ![eigen2sth](./imgs/eigen2sth.png)
 
 ```cpp
