@@ -52,10 +52,23 @@ Prerequisites
 -----
 ## 테스트 및 검증
 
-[Online 3D Rotation Converter](https://www.andre-gaschler.com/rotationconverter/)를 통해 여러 값들을 대입하여 라이브러리가 잘 작동하는 지 확인해보았다.
-#### Test case 1. geometry_msgs/Pose -> 4x4 transformation matrix / xyzrpy
-![eigen2sth](./imgs/eigen2sth.png)
+검증 내용은 src/main.cpp에 모두 포함되어 있다.
 
+[Online 3D Rotation Converter](https://www.andre-gaschler.com/rotationconverter/)를 통해 여러 값들을 직접 대입하여 라이브러리를 통해 산출된 값이 맞는지 확인해보았다.
+
+#### Test case 1. geometry_msgs/Pose -> 4x4 transformation matrix / xyzrpy
+```cpp
+geometry_msgs::Pose geoPoseInput; /
+geoPoseInput.position.x = 7.9;
+geoPoseInput.position.y = 6.5;
+geoPoseInput.position.z = 4.4;
+
+geoPoseInput.orientation.x = 0.062221;
+geoPoseInput.orientation.y = 0.062221;
+geoPoseInput.orientation.z = 0.777625;
+geoPoseInput.orientation.w = 0.6225425;
+```
+##### 변환 결과
 ```cpp
 -0.217141 -0.960464  0.174239       7.9
  0.975949 -0.217141 0.0192987       6.5
@@ -68,8 +81,14 @@ Prerequisites
 -0.0192999
    1.78972
 ```
-#### Test case 2. 4x4 transformation matrix -> geometry_msgs/Pose / xyzrpy
+##### 검증 
+
 ![geoPose2sth](./imgs/geoPose2sth.png)
+
+Quaternion에 대응하는 Rotation matrix 값과 Euler angle이 동일함을 확인할 수 있다!
+
+#### Test case 2. 4x4 transformation matrix -> geometry_msgs/Pose / xyzrpy
+
 ```cpp
 3.5, 4.2, 1
 -0.0717496, -0.0717496, 0.89687, -0.430498
@@ -80,6 +99,8 @@ Prerequisites
   0.191647
   -2.25311
 ```
+
+![eigen2sth](./imgs/eigen2sth.png)
 #### Test case 3. xyzrpy -> geometry_msgs/Pose 4x4 transformation matrix 
 ![xyzrpy2sth](./imgs/xyzrpy2sth.png)
 ```cpp
