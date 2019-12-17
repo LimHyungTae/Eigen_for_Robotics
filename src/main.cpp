@@ -24,7 +24,7 @@ using namespace Eigen;
 int main(){
   double roll, pitch, yaw;
 
-  geometry_msgs::Pose geoPoseInput; /** Test cas 1. geoPose -> eigenPose / xyzrpy */
+  geometry_msgs::Pose geoPoseInput; /** Test case 1. geoPose -> eigenPose / xyzrpy */
 
   geoPoseInput.position.x = 7.9;
   geoPoseInput.position.y = 6.5;
@@ -35,12 +35,12 @@ int main(){
   geoPoseInput.orientation.z = 0.777625;
   geoPoseInput.orientation.w = 0.6225425;
 
-  Matrix4f eigenPoseInput; /** Test cas 2. eigenPose -> geoPose / xyzrpy */
+  Matrix4f eigenPoseInput; /** Test case 2. eigenPose -> geoPose / xyzrpy */
   eigenPoseInput << -0.6190476, 0.7824968, -0.0669241, 3.5,
                     -0.7619048, -0.6190476, -0.1904762, 4.2,
                     -0.1904762, -0.0669241,  0.9794080, 1.0,
                              0,          0,          0, 1.0;
-  VectorXf xyzrpyInput(6); /** Test cas 3. xyzrpy -> geoPose / eigenPose */
+  VectorXf xyzrpyInput(6); /** Test case 3. xyzrpy -> geoPose / eigenPose */
   xyzrpyInput << -4.2, 2.7, 3, 0.02, -1.2, 0.75;
 
   geometry_msgs::Pose geoPose;
