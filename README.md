@@ -93,7 +93,7 @@ Quaternion에 대응하는 Rotation matrix 값과 Euler angle이 동일함을 �
 
 #### Test case 2. 4x4 transformation matrix -> geometry_msgs/Pose / xyzrpy
 ```cpp
-Matrix4f eigenPoseInput; 
+Eigen::Matrix4f eigenPoseInput; 
   eigenPoseInput << -0.6190476, 0.7824968, -0.0669241, 3.5,
                     -0.7619048, -0.6190476, -0.1904762, 4.2,
                     -0.1904762, -0.0669241,  0.9794080, 1.0,
@@ -116,7 +116,7 @@ Matrix4f eigenPoseInput;
 #### Test case 3. xyzrpy -> geometry_msgs/Pose 4x4 transformation matrix 
 
 ```cpp
-VectorXf xyzrpyInput(6);
+Eigen::VectorXf xyzrpyInput(6);
   xyzrpyInput << -4.2, 2.7, 3, 0.02, -1.2, 0.75;
 ```
 ##### 결과
@@ -137,4 +137,4 @@ VectorXf xyzrpyInput(6);
 
 ![how_to_use](./imgs/how_to_use.png)
 
-2. 위와 같이 set 해주고 해당 node에 추가해준다.
+2. 위와 같이 set()명령어를 통해 변수로 정의한 후, 해당 node의 add_executable란 뒤에 ${conversion_src} 같이 추가해주면 된다.
