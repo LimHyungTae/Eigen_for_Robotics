@@ -1,4 +1,6 @@
-IUSLAM FOR DRB (LiDAR ICP matching & RGBD Feature Matching)
+# Pose Conversion Package for ROS
+
+Original Author: 임형태 (shapelim@kaist.ac.kr)
 =======================
 
 
