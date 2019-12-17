@@ -47,11 +47,11 @@ Prerequisites
 -----
 ## 테스트 및 검증
 
-검증 내용은 src/main.cpp에 모두 포함되어 있다.
+검증 내용은 src/main.cpp에 모두 작성되어 있다.
 
-[Online 3D Rotation Converter](https://www.andre-gaschler.com/rotationconverter/)를 통해 여러 값들을 직접 대입하여 라이브러리를 통해 산출된 값이 맞는지 확인해보았다.
+임의의 입력값을 준 후, [Online 3D Rotation Converter](https://www.andre-gaschler.com/rotationconverter/)를 통해 라이브러리를 통해 산출된 값이 맞는지 테스트해보았다.
 
-**[NOTE] 쿼터니언/변환행렬에서 rpy로 변환하는 과정에서 rpy의 값이 약 0.001~0.002정도 변하는 것을 확인해다.** 아마 float과 double의 형변환 과정에서 발생한 에러이거나, 혹은 수치해석적인 작은 에러로 보인다.
+**[NOTE] 쿼터니언/변환행렬에서 rpy로 변환하는 과정에서 rpy의 값이 약 0.001~0.002정도 변하는 것을 확인했다.** 아마 float과 double의 형변환 과정에서 발생한 에러이거나, 혹은 수치해석적인 작은 에러로 보인다.
 
 #### Test case 1. geometry_msgs/Pose -> 4x4 transformation matrix / xyzrpy
 ```cpp
