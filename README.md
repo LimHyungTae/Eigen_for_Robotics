@@ -1,6 +1,6 @@
 # Pose Conversion Package for ROS
 
-## ROS로 개발할시 type 변환을 용이하게 해주는 라이브러리
+### ROS로 개발할시 type 변환을 용이하게 해주는 라이브러리
 
 
 
@@ -33,24 +33,26 @@ ROS 상에서 로봇의 pose들은 [nav_msgs/Odometry](http://docs.ros.org/melod
 
 1. Download this repository 
 <pre><code>$ cd /home/$usr_name/catkin_ws/src</code></pre>
-<pre><code>$ https://github.com/LimHyungTae/mcl_2d_lidar_ros.git</code></pre>
+<pre><code>$ git clone https://github.com/LimHyungTae/pose_conversion.git</code></pre>
+
 2. Build this ros code as follows.
 <pre><code>$ cd /home/$usr_name/catkin_ws</code></pre>
-<pre><code>$ catkin_make re510_slam</code></pre>
+<pre><code>$ catkin_make pose_conversion</code></pre>
 
 Or if you use catkin-tools, then type below line on the command
-<pre><code>$ catkin build re510_slam</code></pre>
+<pre><code>$ catkin build pose_conversion</code></pre>
 
 3. Rosrun example file
-<pre><code>$ rosrun pose_conversion pose_type_conversion</code></pre>
-### 다른 패키지에서 사용하는 법
+<pre><code>$ rosrun pose_conversion pose_type_conversion </code></pre>
 
-![how_to_use](./imgs/how_to_use.png)
+
 
 
 Prerequisites
 -----
 ## 테스트 및 검증
+
+[Online 3D Rotation Converter](https://www.andre-gaschler.com/rotationconverter/)를 통해 여러 값들을 대입하여 라이브러리가 잘 작동하는 지 확인해보았다.
 
 ![eigen2sth](./imgs/eigen2sth.png)
 
@@ -87,3 +89,21 @@ After:
 -4.2, 2.7, 3
 0.214482, -0.522355, 0.307537, 0.765875
 ```
+
+### 다른 패키지에서 사용하는 법
+
+![how_to_use](./imgs/how_to_use.png)
+
+1. Download this repository 
+<pre><code>$ cd /home/$usr_name/catkin_ws/src</code></pre>
+<pre><code>$ git clone https://github.com/LimHyungTae/pose_conversion.git</code></pre>
+
+2. Build this ros code as follows.
+<pre><code>$ cd /home/$usr_name/catkin_ws</code></pre>
+<pre><code>$ catkin_make pose_conversion</code></pre>
+
+Or if you use catkin-tools, then type below line on the command
+<pre><code>$ catkin build pose_conversion</code></pre>
+
+3. Rosrun example file
+<pre><code>$ rosrun pose_conversion pose_type_conversion </code></pre>
