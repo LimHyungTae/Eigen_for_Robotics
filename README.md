@@ -132,6 +132,7 @@ Eigen::VectorXf xyzrpyInput(6);
 ![xyzrpy2sth](./imgs/xyzrpy2sth.png)
 
 ### 다른 패키지에서 사용하는 법
+본 레포지토리의 [CMakeList.txt](https://github.com/LimHyungTae/pose_conversion/blob/master/CMakeLists.txt)파일을 참고하여 해당 패키지에 추가하면 된다.
 
 1. <code>$ pose_converion.h</code>과 <code>$ pose_converion.cpp</code>를 해당 패키지로 옮긴다.
 
