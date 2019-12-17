@@ -24,54 +24,35 @@ isam-library : Gaussian Process
 Prerequisites
 -----
 # 1. isam
-To install ISAM, you need these prerequisits.
-**CMake (version 2.8 or higher), 
-CHOLMOD (sparse matrix libraries by Tim Davis, University of Florida), 
-Eigen (version 3), 
+```cpp
+-0.217141 -0.960464  0.174239       7.9
+ 0.975949 -0.217141 0.0192987       6.5
+0.0192987  0.174239  0.984514       4.4
+        0         0         0         1
+       7.9
+       6.5
+       4.4
+  0.175166
+-0.0192999
+   1.78972
 
-You have to install  **CMake, CHOLMOD, Eigen**
-**CMake**is usally installed, you can check by this command at shell.
-```
-$ cmake -version
-```
-If installed, Version of **cmake** will be printed
+3.5, 4.2, 1
+-0.0717496, -0.0717496, 0.89687, -0.430498
+       3.5
+       4.2
+         1
+-0.0682251
+  0.191647
+  -2.25311
 
-You can install **CHOLMOD** by this command
-```
-$ sudo apt-get install libsuitesparse-dev
-```
-
-You can install **Eigen** by this command (usually **Eigen** installed when installing **CHOLMOD**)
-```
-$ sudo apt-get install libeigen3-dev
-```
-
-(optional)
-```
-$ sudo apt-get install libsdl1.2-dev doxygen graphviz
-```
-
-you can Download **isam**
-```
-$ svn co https://svn.csail.mit.edu/isam
-```
-
-Copy **Pose2d.cpp** and **Pose3d.cpp** into **isam/isamlib** folder.(if you didn't copy **Pose2d.cpp** and **Pose3d.cpp**,linking error will be occured.)
-( **Pose2d.cpp** and **Pose3d.cpp** are in **isam-library** folder(in iuslam4))
-
-move to folder which **isam** installed, and compile it using command.
-```
-$ make
-```
-
-After compile, you can run this command to check compile completed.
-```
-$ bin/isam -G data/sphere400.txt
-```
-
-move library on the system (To **/usr/local/include/isam**)
-```
-$ make install
+After: 
+  0.265133  -0.695141  -0.668194       -4.2
+  0.246997   0.718837   -0.64982        2.7
+  0.932039 0.00724667   0.362285          3
+         0          0          0          1
+-4.2, 2.7, 3
+0.214482, -0.522355, 0.307537, 0.765875
+==================
 ```
 ## How to Use
 
