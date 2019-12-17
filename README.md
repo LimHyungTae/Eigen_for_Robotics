@@ -56,6 +56,8 @@ Prerequisites
 
 [Online 3D Rotation Converter](https://www.andre-gaschler.com/rotationconverter/)를 통해 여러 값들을 직접 대입하여 라이브러리를 통해 산출된 값이 맞는지 확인해보았다.
 
+**NOTE 쿼터니언/변환행렬에서 rpy로 변환하는 과정에서 rpy의 값이 약 0.001~0.002정도 변하는 것을 확인해다. ** 아마 float과 double의 형변환 과정에서 발생한 에러이거나, 혹은 수치해석적인 작은 에러로 보인다.
+
 #### Test case 1. geometry_msgs/Pose -> 4x4 transformation matrix / xyzrpy
 ```cpp
 geometry_msgs::Pose geoPoseInput; /
@@ -87,8 +89,17 @@ geoPoseInput.orientation.w = 0.6225425;
 
 Quaternion에 대응하는 Rotation matrix 값과 Euler angle이 동일함을 확인할 수 있다!
 
-#### Test case 2. 4x4 transformation matrix -> geometry_msgs/Pose / xyzrpy
+아래의 두 경우도 마찬가지이다. 
 
+#### Test case 2. 4x4 transformation matrix -> geometry_msgs/Pose / xyzrpy
+```cpp
+Matrix4f eigenPoseInput; 
+  eigenPoseInput << -0.6190476, 0.7824968, -0.0669241, 3.5,
+                    -0.7619048, -0.6190476, -0.1904762, 4.2,
+                    -0.1904762, -0.0669241,  0.9794080, 1.0,
+                             0,          0,          0, 1.0;
+```
+##### 결과
 ```cpp
 3.5, 4.2, 1
 -0.0717496, -0.0717496, 0.89687, -0.430498
@@ -99,12 +110,17 @@ Quaternion에 대응하는 Rotation matrix 값과 Euler angle이 동일함을 �
   0.191647
   -2.25311
 ```
-
+##### 검증
 ![eigen2sth](./imgs/eigen2sth.png)
+
 #### Test case 3. xyzrpy -> geometry_msgs/Pose 4x4 transformation matrix 
-![xyzrpy2sth](./imgs/xyzrpy2sth.png)
+
 ```cpp
-After: 
+VectorXf xyzrpyInput(6);
+  xyzrpyInput << -4.2, 2.7, 3, 0.02, -1.2, 0.75;
+```
+##### 결과
+```cpp
   0.265133  -0.695141  -0.668194       -4.2
   0.246997   0.718837   -0.64982        2.7
   0.932039 0.00724667   0.362285          3
@@ -112,6 +128,8 @@ After:
 -4.2, 2.7, 3
 0.214482, -0.522355, 0.307537, 0.765875
 ```
+##### 검증
+![xyzrpy2sth](./imgs/xyzrpy2sth.png)
 
 ### 다른 패키지에서 사용하는 법
 
