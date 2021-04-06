@@ -18,23 +18,19 @@ find_package(catkin REQUIRED COMPONENTS
   pcl_ros
 )
 
-find_package(PCL REQUIRED)
+#find_package(PCL REQUIRED)
 include_directories(${PCL_INCLUDE_DIRS})
 link_directories(${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})
 
 
-
 include_directories(
+  include
   ${catkin_INCLUDE_DIRS}
   src
 )
 
-set(conversion_src
-    src/utils/pose_conversion.h
-    src/utils/pose_conversion.cpp
-)
-
-add_executable(pose_type_conversion src/main.cpp ${conversion_src})
+add_executable(pose_type_conversion src/main.cpp src/pose_conversion.cpp)
+add_dependencies(pose_type_conversion ${catkin_EXPORTED_TARGETS})
 target_link_libraries(pose_type_conversion ${catkin_LIBRARIES})
 

@@ -1,24 +1,7 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <string>
-#include <fstream>
-#include <opencv2/core.hpp>
-#include <ros/ros.h>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <Eigen/Dense>
-#include <stdio.h>
-#include <stdlib.h>
-#include <geometry_msgs/Pose.h>
-#include <tf/tf.h>
-//#include <pose_conversion.h>
-#include <utils/pose_conversion.h>
+#include <pose_conversion.h>
 
 using namespace std;
 using namespace Eigen;
-// using namespace utils;
-//using namespace unavlib;
 
 int main(){
   double roll, pitch, yaw;
