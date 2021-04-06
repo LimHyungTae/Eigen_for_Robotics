@@ -10,7 +10,6 @@
 #include <Eigen/Dense>
 #include <stdio.h>
 #include <stdlib.h>
-#include <isam/isam.h>
 #include <geometry_msgs/Pose.h>
 #include <tf/tf.h>
 //#include <pose_conversion.h>
