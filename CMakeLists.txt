@@ -30,7 +30,11 @@ include_directories(
   src
 )
 
-add_executable(pose_type_conversion src/main.cpp src/pose_conversion.cpp)
+add_executable(pose_type_conversion examples/main.cpp src/pose_conversion.cpp include/utils.hpp)
 add_dependencies(pose_type_conversion ${catkin_EXPORTED_TARGETS})
 target_link_libraries(pose_type_conversion ${catkin_LIBRARIES})
+
+add_executable(casting examples/casting.cpp src/pose_conversion.cpp include/utils.hpp)
+add_dependencies(casting ${catkin_EXPORTED_TARGETS})
+target_link_libraries(casting ${catkin_LIBRARIES})
 
