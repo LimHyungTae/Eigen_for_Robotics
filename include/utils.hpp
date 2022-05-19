@@ -34,8 +34,10 @@
 
 using namespace std;
 
+string ABS_FILE_PATH = "/home/shapelim/catkin_ws/src/pose_conversion/materials/odom_poses.txt";
+
 void loadOdom(const string &filePath, vector<nav_msgs::Odometry> &odomBuf){
-    std::cout<< "load odom start" << std::endl;
+    std::cout<< "Start loading odom..." << std::endl;
     odomBuf.reserve(LARGE_ENOUGH);
     string ts, x, y, z, qx, qy, qz, qw;
     string line;

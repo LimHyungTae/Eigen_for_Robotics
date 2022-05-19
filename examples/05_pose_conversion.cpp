@@ -1,7 +1,20 @@
-#include <pose_conversion.h>
+#include "pose_conversion.h"
+#include <iomanip>
+#include "utils.hpp"
 
 using namespace std;
 using namespace Eigen;
+
+void getTf4x4(const nav_msgs::Odometry o, Eigen::Matrix4f &tf4x4) {
+    const auto &ori = o.pose.pose.orientation;
+    const auto &posit = o.pose.pose.position;
+    Eigen::Quaternionf q(ori.w, ori.x, ori.y, ori.z);
+    Eigen::Vector3f t(posit.x, posit.y, posit.z);
+
+    tf4x4 = Eigen::Matrix4f::Identity();
+    tf4x4.block<3, 3>(0, 0) = q.toRotationMatrix();
+    tf4x4.block<3, 1>(0, 3) = t;
+}
 
 int main(){
   double roll, pitch, yaw;

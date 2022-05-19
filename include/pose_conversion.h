@@ -18,14 +18,6 @@
 namespace pose_conversion
 {
     /**
-     * @brief Type conversion of eigen matrices
-     **/
-    Eigen::Matrix3d eigenf2eigend(const Eigen::Matrix3f& eigen3x3);
-    Eigen::Matrix4d eigenf2eigend(const Eigen::Matrix4f& eigen4x4);
-    Eigen::Matrix3f eigend2eigenf(const Eigen::Matrix3d& eigen3x3);
-    Eigen::Matrix4f eigend2eigenf(const Eigen::Matrix4d& eigen4x4);
-
-    /**
      * @brief Rotation matrix / Transformation matrix of Eigen -> tf::Matrix3x3
      **/
     tf::Matrix3x3 eigenRot2RotMat(const Eigen::Matrix3f& eigenRotMat);

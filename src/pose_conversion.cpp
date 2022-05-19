@@ -2,60 +2,9 @@
 
 namespace pose_conversion
 {
-    Eigen::Matrix3d eigenf2eigend(const Eigen::Matrix3f& eigen3x3)
-    {
-      Eigen::Matrix3d result;
-      for(int y = 0; y < 3; y++)
-      {
-        for(int x = 0; x < 3; x ++)
-        {
-          result(y,x) = eigen3x3(y,x);
-        }
-      }
-      return result;
-    }
-    Eigen::Matrix4d eigenf2eigend(const Eigen::Matrix4f& eigen4x4)
-    {
-      Eigen::Matrix4d result;
-      for(int y = 0; y < 4; y++)
-      {
-        for(int x = 0; x < 4; x ++)
-        {
-          result(y,x) = eigen4x4(y,x);
-        }
-      }
-      return result;
-    }
-
-    Eigen::Matrix3f eigend2eigenf(const Eigen::Matrix3d& eigen3x3)
-    {
-      Eigen::Matrix3f result;
-      for(int y = 0; y < 3; y++)
-      {
-        for(int x = 0; x < 3; x ++)
-        {
-          result(y,x) = eigen3x3(y,x);
-        }
-      }
-      return result;
-    }
-
-    Eigen::Matrix4f eigend2eigenf(const Eigen::Matrix4d& eigen4x4)
-    {
-      Eigen::Matrix4f result;
-      for(int y = 0; y < 4; y++)
-      {
-        for(int x = 0; x < 4; x ++)
-        {
-          result(y,x) = eigen4x4(y,x);
-        }
-      }
-      return result;
-    }
-
     tf::Matrix3x3 eigenRot2RotMat(const Eigen::Matrix3f& eigenRotMat){
         tf::Matrix3x3 rotMat;
-        Eigen::Matrix3d rot = pose_conversion::eigenf2eigend(eigenRotMat);
+        Eigen::Matrix3d rot = eigenRotMat.cast<double>();
         rotMat.setValue(rot(0,0), rot(0,1), rot(0,2),
                         rot(1,0), rot(1,1), rot(1,2),
                         rot(2,0), rot(2,1), rot(2,2));
@@ -65,15 +14,13 @@ namespace pose_conversion
 
      tf::Matrix3x3 getRotMat(const Eigen::Matrix4f& eigenPose){
         tf::Matrix3x3 rotMat;
-        Eigen::Matrix4d pose = pose_conversion::eigenf2eigend(eigenPose);
+        Eigen::Matrix4d pose = eigenPose.cast<double>();
         rotMat.setValue(pose(0,0), pose(0,1), pose(0,2),
                         pose(1,0), pose(1,1), pose(1,2),
                         pose(2,0), pose(2,1), pose(2,2));
         return rotMat;
 
     }
-
-
 
     Eigen::Matrix3f rotMat2EigenRot(const tf::Matrix3x3& rotMat){
         Eigen::Matrix3f eigenRotMat(3,3);
@@ -214,6 +161,5 @@ namespace pose_conversion
       geoPose.position.z = xyzrpy[2];
       return geoPose;
     }
-
 }
 
