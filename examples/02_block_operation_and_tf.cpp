@@ -26,17 +26,18 @@ int main(){
     const auto & ori = o.pose.pose.orientation;
     const auto & posit = o.pose.pose.position;
 
-    // Eigen:: w, x, y, z order
-    // tf: x, y, z, w order
+    // Eigen: w, x, y, z order
+    // tf   : x, y, z, w order
     Eigen::Quaternionf q(ori.w, ori.x, ori.y, ori.z);
     Eigen::Vector3f t(posit.x, posit.y, posit.z);
 
-    // head and tail in Eigen Vector
+    // `head` and `tail` in Eigen Vector
     cout << t.transpose() << endl;
     cout << t.transpose().head(2) << endl;
     cout << t.transpose().tail(2) << endl;
 
-    // Block operation to assign values to the transformation matrix
+    // Block operation to assign values to the transformation matrix in different ways
+    // But, the results are same!
     Eigen::Matrix4f tf4x4WithBlock, tf4x4WithTopRightCorner;
     getTf4x4WithBlock(q, t, tf4x4WithBlock);
     getTf4x4WithTopRightCorner(q, t, tf4x4WithTopRightCorner);
@@ -86,7 +87,7 @@ int main(){
     cout << "Rotation: " << endl << rotByAffine << endl;
     cout << "Translation: " << transByAffine.transpose() << endl;
 
-    // WARNING: rotate() actually rotate the matrix!
+    // WARNING: `rotate()` actually rotate the matrix!
     // That is, it operates multiplication of rotation matrix, not just assigns the naive values!!!
     affineTf.rotate(tf4x4WithBlock.block<3, 3>(0, 0));
     cout << "Same with upper matrix?: " << endl;

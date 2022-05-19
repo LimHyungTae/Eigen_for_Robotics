@@ -15,13 +15,15 @@ int main(){
     const auto & posit = o.pose.pose.position;
 
     // For rotation <-> quaternion
-    // Eigen:: w, x, y, z order
-    // tf: x, y, z, w order
+    // Note the the order of elements of Quaternion!
+    // Eigen: w, x, y, z order
+    // tf   : x, y, z, w order
     Eigen::Quaterniond q(ori.w, ori.x, ori.y, ori.z);
     cout << q.toRotationMatrix() << endl;
     Eigen::Matrix3f rot = q.toRotationMatrix().cast<float>();
     Eigen::Quaternionf qFromRot(rot);
     cout << setw(20) << "Original: " << ori.w << ", " << ori.x << ", " << ori.y << ", " << ori.z << endl;
+    // However, remind that the order in `coeffs()` is x y z w!!!!
     cout << setw(20) << "Quat: " << q.coeffs().transpose() << endl;
     cout << setw(20) << "Quat from rot. mat: " << qFromRot.coeffs().transpose() << endl;
 

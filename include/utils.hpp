@@ -34,7 +34,7 @@
 
 using namespace std;
 
-string ABS_FILE_PATH = "/home/shapelim/catkin_ws/src/pose_conversion/materials/odom_poses.txt";
+string ABS_FILE_PATH = "/home/shapelim/catkin_ws/src/Eigen_for_Robotics/materials/odom_poses.txt";
 
 void loadOdom(const string &filePath, vector<nav_msgs::Odometry> &odomBuf){
     std::cout<< "Start loading odom..." << std::endl;
@@ -42,6 +42,9 @@ void loadOdom(const string &filePath, vector<nav_msgs::Odometry> &odomBuf){
     string ts, x, y, z, qx, qy, qz, qw;
     string line;
     ifstream readFile(filePath);
+    if (readFile.fail()) {
+        throw std::invalid_argument("Address of ABS_FILE_PATH seems to be wrong. Check include/utils.hpp");
+    }
 
     while(getline(readFile, line))   {
         nav_msgs::Odometry tmp;

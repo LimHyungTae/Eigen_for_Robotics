@@ -42,16 +42,13 @@ int main(){
     Eigen::Matrix3f relRot = relTf.block<3, 3>(0, 0);
     cout << "Original rel. rotation:" << endl << relRot << endl;
 
-    // 1. Euler angle
-    /**< Estimating rpy using Eigen */
+    /**< 1. Estimation of rpy using Eigen */
     Eigen::Vector3f ea = relRot.eulerAngles(0, 1, 2);
     cout << "To Euler angles:" << endl;
     cout << "\033[1;31m" << ea.transpose() << "\033[0m" << endl;
     coutRotation("Eigen: ", ea(0), ea(1), ea(2));
-    // 2. ROS tf
-    /**< Estimating rpy using tf */
-    /**< rpy -> quaternion */
-    //
+
+    /**< 2. Estimation of rpy using ROS tf */
     Eigen::Quaternionf relQuat(relRot);
     // tf: x, y, z, w order!
     tf::Quaternion qTf(relQuat.x(), relQuat.y(), relQuat.z(), relQuat.w());
@@ -68,8 +65,7 @@ int main(){
     relRotTf.getEulerYPR(yaw, pitch, roll);
     cout << "\033[1;34m" << roll << ", " << pitch << ", " << yaw << "\033[0m" << endl;
 
-    // 3.
-    /**< Estimating rpy using OpenCV */
+    /**< 3. Estimation of rpy using OpenCV */
     cv::Mat relRotCV = cv::Mat::eye(3, 3, CV_32FC1);
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
