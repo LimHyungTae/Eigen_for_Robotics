@@ -14,6 +14,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   genmsg
+  tf
+  tf_conversions
   pcl_conversions
   pcl_ros
 )
@@ -32,6 +34,8 @@ include_directories(
   src
 )
 
+catkin_package() #for using with catkin build
+
 add_executable(01_vec_and_quat examples/01_vector_and_quaternion.cpp src/pose_conversion.cpp include/utils.hpp)
 add_dependencies(01_vec_and_quat ${catkin_EXPORTED_TARGETS})
 target_link_libraries(01_vec_and_quat ${catkin_LIBRARIES})
@@ -48,5 +52,6 @@ add_executable(04_roll_pitch_yaw examples/04_roll_pitch_yaw.cpp src/pose_convers
 add_dependencies(04_roll_pitch_yaw ${catkin_EXPORTED_TARGETS})
 target_link_libraries(04_roll_pitch_yaw ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
-
-
+add_executable(05_pose_conversion examples/05_pose_conversion.cpp src/pose_conversion.cpp include/utils.hpp)
+add_dependencies(05_pose_conversion ${catkin_EXPORTED_TARGETS})
+target_link_libraries(05_pose_conversion ${catkin_LIBRARIES})

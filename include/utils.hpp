@@ -34,7 +34,7 @@
 
 using namespace std;
 
-string ABS_FILE_PATH = "/home/shapelim/catkin_ws/src/Eigen_for_Robotics/materials/odom_poses.txt";
+string ABS_FILE_PATH = "/home/mason/ws/paper_ws/src/Eigen_for_Robotics/materials/odom_poses.txt";
 
 void loadOdom(const string &filePath, vector<nav_msgs::Odometry> &odomBuf){
     std::cout<< "Start loading odom..." << std::endl;

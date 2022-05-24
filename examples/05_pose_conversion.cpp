@@ -5,13 +5,13 @@
 using namespace std;
 using namespace Eigen;
 
-void getTf4x4(const nav_msgs::Odometry o, Eigen::Matrix4f &tf4x4) {
+void getTf4x4(const nav_msgs::Odometry o, Eigen::Matrix4d &tf4x4) {
     const auto &ori = o.pose.pose.orientation;
     const auto &posit = o.pose.pose.position;
-    Eigen::Quaternionf q(ori.w, ori.x, ori.y, ori.z);
-    Eigen::Vector3f t(posit.x, posit.y, posit.z);
+    Eigen::Quaterniond q(ori.w, ori.x, ori.y, ori.z);
+    Eigen::Vector3d t(posit.x, posit.y, posit.z);
 
-    tf4x4 = Eigen::Matrix4f::Identity();
+    tf4x4 = Eigen::Matrix4d::Identity();
     tf4x4.block<3, 3>(0, 0) = q.toRotationMatrix();
     tf4x4.block<3, 1>(0, 3) = t;
 }
@@ -30,17 +30,17 @@ int main(){
   geoPoseInput.orientation.z = 0.777625;
   geoPoseInput.orientation.w = 0.6225425;
 
-  Matrix4f eigenPoseInput; /** Test case 2. eigenPose -> geoPose / xyzrpy */
+  Matrix4d eigenPoseInput; /** Test case 2. eigenPose -> geoPose / xyzrpy */
   eigenPoseInput << -0.6190476, 0.7824968, -0.0669241, 3.5,
                     -0.7619048, -0.6190476, -0.1904762, 4.2,
                     -0.1904762, -0.0669241,  0.9794080, 1.0,
                              0,          0,          0, 1.0;
-  VectorXf xyzrpyInput(6); /** Test case 3. xyzrpy -> geoPose / eigenPose */
+  VectorXd xyzrpyInput(6); /** Test case 3. xyzrpy -> geoPose / eigenPose */
   xyzrpyInput << -4.2, 2.7, 3, 0.02, -1.2, 0.75;
 
   geometry_msgs::Pose geoPose;
-  Matrix4f eigenPose = Matrix4f::Identity();
-  VectorXf xyzrpy(6);
+  Matrix4d eigenPose = Matrix4d::Identity();
+  VectorXd xyzrpy(6);
 
   /**
    * @brief geometry_msgs/Pose -> Eigen::Matrix4f
