@@ -77,4 +77,20 @@ void loadOdom(const string &filePath, vector<nav_msgs::Odometry> &odomBuf){
     std::cout<< "odomBuf size :" << odomBuf.size() << std::endl;
 }
 
+   double calcTranslationError(Eigen::Matrix4f &rel4x4) {
+        double ts_error = 0;
+        for (int i = 0; i < 3; ++i) {
+            ts_error += rel4x4(i, 3) * rel4x4(i, 3);
+        }
+        ts_error = sqrt(ts_error);
+        return ts_error;
+    }
+
+// http://www.boris-belousov.net/2016/12/01/quat-dist/
+double calcRotationError(Eigen::Matrix4f &rel4x4) {
+    Eigen::Matrix3f rel_rot = rel4x4.block<3, 3>(0, 0);
+    double rot_error = acos((rel_rot.trace() - 1) / 2);
+    return rot_error;
+}
+
 #endif //POSE_CONVERSION_UTILS_HPP

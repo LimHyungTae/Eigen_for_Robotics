@@ -49,8 +49,6 @@ namespace pose_conversion
      **/
     Eigen::VectorXd geoPose2xyzrpy(const geometry_msgs::Pose& geoPose);
     geometry_msgs::Pose xyzrpy2geoPose(const Eigen::VectorXd& xyzrpy);
-
 }
-
 
 #endif

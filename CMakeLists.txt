@@ -55,3 +55,7 @@ target_link_libraries(04_roll_pitch_yaw ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 add_executable(05_pose_conversion examples/05_pose_conversion.cpp src/pose_conversion.cpp include/utils.hpp)
 add_dependencies(05_pose_conversion ${catkin_EXPORTED_TARGETS})
 target_link_libraries(05_pose_conversion ${catkin_LIBRARIES})
+
+add_executable(06_calc_error examples/06_calc_ts_rot_error.cpp src/pose_conversion.cpp include/utils.hpp)
+add_dependencies(06_calc_error ${catkin_EXPORTED_TARGETS})
+target_link_libraries(06_calc_error ${catkin_LIBRARIES})

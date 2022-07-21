@@ -190,4 +190,3 @@ namespace pose_conversion
       return geoPose;
     }
 }
-
